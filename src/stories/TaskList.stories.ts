@@ -15,5 +15,5 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const SimpleList: Story = {
-    args:  defaultTaskListProps
+    args:  {tasks: defaultTaskListProps}
 }

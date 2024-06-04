@@ -17,17 +17,37 @@ defaultTaskProps,
 ]
 
 
+// type TaskListProps = {
+//     tasks: typeof defaultTaskListProps
+// }
+
+type TaskListProps = {
+    tasks: {
+        title: string;
+        description: string;
+        isComplete: boolean;
+    }[]
+}
 
 
-export const TaskList = (props = defaultTaskListProps) =>
+export const TaskList = (props: TaskListProps = {tasks: defaultTaskListProps}) =>
     {        
+        const arrayOfTaskObjects = props["tasks"]
+        
         const sequencing = "TBD"
-
+        console.log(`IF YOU ONLY DIG IN AS FAR AS TASKS YOU GET`, props["tasks"])
         return(
             <>
-                {Task(props[0])}
-                {Task(props[1])}
-                {Task(props[3])}
+                <p>{props.tasks[0].description}</p>
+                {Task(props["tasks"][0])}
+                {Task(props["tasks"][1])}
+                <br />
+                {arrayOfTaskObjects.map(singleTaskObject => {
+                    return(
+                        <div>
+                            {Task(singleTaskObject)}
+                        </div>)
+                })}
             </>
         )
     }
