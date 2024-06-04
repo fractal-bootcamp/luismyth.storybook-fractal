@@ -13,31 +13,29 @@
     ;
   }
   .task-card--incomplete {
-    color: white;
-    background-color: #1ea7fd;
+    background-color: white;
   }
   .task-card--complete {
-    color: #333;
-    background-color: transparent;
+    background-color: #E2FFE5;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
   }
 
 .task-checkbox {
-    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 700;
-    border: 0;
-    border-radius: 3em;
-    cursor: pointer;
-    display: inline-block;
-    line-height: 1;
+    width: 25px;
+    height: 25px;
+    gap: 0px;
+    border-radius: 8px 0px 0px 0px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
   }
   .task-checkbox--incomplete {
-    color: white;
-    background-color: #1ea7fd;
+    background: #FFFFFF;
+    border: 1px solid #D8D8D8
   }
   .task-checkbox--complete {
-    color: #333;
-    background-color: transparent;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
+    background: #359845;
+    border: 1px solid #D8D8D8
   }
+  
+
   

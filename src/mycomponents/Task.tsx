@@ -25,9 +25,11 @@ const Task = ({
         const completionStatus = isComplete ? 'complete' : 'incomplete';
 
         return(
-            <div className="flex flex-row task-card" >
-                <div className={['flex-col task-checkbox', `task-checkbox--${completionStatus}` ].join(' ')}>
+            <div className={["flex flex-row task-card", `task-card--${completionStatus}`].join(' ')} >
+                <div className='flex-col'>
+                    <div className={['task-checkbox', `task-checkbox--${completionStatus}` ].join(' ')}>
                     {isComplete ? "Complete" : "Incomplete"}
+                    </div>
                 </div>
                 <div className= {["flex-col", `task-card--${completionStatus}`].join(' ')} >
                     <div className= {['flex flex-row', 'task-card--title',].join(' ')}>
