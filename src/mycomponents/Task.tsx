@@ -1,3 +1,4 @@
+import { useState } from "react"
 import './task.css';
 
 const defaultTaskProps = {
@@ -22,17 +23,22 @@ const Task = ({
     isComplete
 }: TaskProps = defaultTaskProps) =>
     {        
-        const completionStatus = isComplete ? 'complete' : 'incomplete';
+        const [checked, setChecked] = useState(isComplete)
+
+        const completionStatus = checked ? 'complete' : 'incomplete';
 
         return(
-            <div className={["flex flex-row task-card", `task-card--${completionStatus}`].join(' ')} >
+            <div className={["flex", "flex-row", "task-card", `task-card--${completionStatus}`].join(' ')} >
                 <div className='flex-col'>
-                    <div className={['task-checkbox', `task-checkbox--${completionStatus}` ].join(' ')}>
-                    {isComplete ? "Complete" : "Incomplete"}
-                    </div>
+                    <button 
+                        className={['task-checkbox', `task-checkbox--${completionStatus}` ].join(' ')}
+                        onClick={()=>{
+                            setChecked(!checked);
+                        }}
+                    />
                 </div>
-                <div className= {["flex-col", `task-card--${completionStatus}`].join(' ')} >
-                    <div className= {['flex flex-row', 'task-card--title',].join(' ')}>
+                <div className= {["flex-col",'flex-grow', `task-card--${completionStatus}`].join(' ')} >
+                    <div className= {['flex', 'flex-row', 'task-card--title',].join(' ')}>
                         {title}
                     </div>
                     <div className= "flex-row task-card--description">

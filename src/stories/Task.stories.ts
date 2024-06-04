@@ -16,16 +16,16 @@ type Story = StoryObj<typeof meta>
 
 export const Incomplete: Story = {
     args: {
-        title: 'sweep the kitchen',
-        description: 'get under the cabinets, do a good job',
+        title: "Sweep the kitchen",
+        description: "Get under the cabinets, do a good job.",
         isComplete: false
     }
 }
 
 export const Complete: Story = {
     args: {
-        title: 'sweep the kitchen',
-        description: 'get under the cabinets, do a good job',
+        title: "Laundry",
+        description: "Wash, dry, fold, and put away the clothes and linens.",
         isComplete: true
     }
 }

@@ -1,5 +1,10 @@
 .task-card {
     font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    border-radius: 8px 8px 8px 8px;
+    padding: 15px;
+    background: #FFFFFF;
+    border: 1px solid #D8D8D8;
+    width: 462px
 }
   .task-card--title {
     font-weight: 400;
@@ -17,15 +22,15 @@
   }
   .task-card--complete {
     background-color: #E2FFE5;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
   }
 
 .task-checkbox {
     width: 25px;
     height: 25px;
-    gap: 0px;
-    border-radius: 8px 0px 0px 0px;
-    border: 1px 0px 0px 0px;
+    margin: 15px 20px 15px 0px;
+    /* Top, Right, Bottom, Left */
+    border-radius: 8px;
+    border: 1px;
     opacity: 0px;
   }
   .task-checkbox--incomplete {
