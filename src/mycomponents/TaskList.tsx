@@ -39,8 +39,8 @@ export const TaskList = (props: TaskListProps = {tasks: defaultTaskListProps}) =
             <>
                 {arrayOfTaskObjects.map(singleTaskObject => {
                     return(
-                        <div className="flex m-4">
-                            {Task(singleTaskObject)}
+                        <div className="flex m-4" key = {singleTaskObject.title}>
+                            <Task {...singleTaskObject} />
                         </div>)
                 })}
             </>
