@@ -9,7 +9,7 @@ const defaultTaskProps = {
     isComplete: true
 }
 
-type TaskProps = {
+export type TaskProps = {
     title: string;
     description: string;
     isComplete: boolean;
