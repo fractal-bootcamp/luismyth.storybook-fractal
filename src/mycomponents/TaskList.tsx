@@ -18,7 +18,7 @@ defaultTaskProps,
 
 
 // type TaskListProps = {
-//     tasks: typeof defaultTaskListProps
+//     tasks: typeof defaultTaskListProps[]
 // }
 
 type TaskListProps = {
@@ -35,16 +35,11 @@ export const TaskList = (props: TaskListProps = {tasks: defaultTaskListProps}) =
         const arrayOfTaskObjects = props["tasks"]
         
         const sequencing = "TBD"
-        console.log(`IF YOU ONLY DIG IN AS FAR AS TASKS YOU GET`, props["tasks"])
         return(
             <>
-                <p>{props.tasks[0].description}</p>
-                {Task(props["tasks"][0])}
-                {Task(props["tasks"][1])}
-                <br />
                 {arrayOfTaskObjects.map(singleTaskObject => {
                     return(
-                        <div>
+                        <div className="flex m-4">
                             {Task(singleTaskObject)}
                         </div>)
                 })}
