@@ -12,18 +12,31 @@ export type TaskProps = {
     isComplete: boolean;
 }
 
+
+
+
+
 const Task = ({
     title,
     description,
     isComplete
 }: TaskProps = defaultTaskProps) =>
-    {
+    {        
+        const completionStyles = isComplete ? 'task-card--complete' : 'task-card--incomplete';
+
         return(
-            <div className="task">
-                <p>{title}</p>
-                <p>{description}</p>
-                <br />
-                <p>{isComplete ? "Complete" : "Incomplete"}</p>
+            <div className="flex flex-row task-card" >
+                <div className="flex flex-col">
+                    {isComplete ? "Complete" : "Incomplete"}
+                </div>
+                <div className= "flex flex-col" >
+                    <div className= {['flex flex-row', 'task-card--title', completionStyles].join(' ')}>
+                        {title}
+                    </div>
+                    <div className= "flex flex-row task-card--description">
+                        {description}
+                    </div>
+                </div>
             </div>
         )
     }
