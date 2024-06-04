@@ -1,7 +1,7 @@
 import { useState } from "react"
 import './task.css';
 
-const defaultTaskProps = {
+export const defaultTaskProps = {
     title: 'sweep the kitchen',
     description: 'get under the cabinets, do a good job',
     isComplete: true
@@ -17,7 +17,7 @@ export type TaskProps = {
 
 
 
-const Task = ({
+export const Task = ({
     title,
     description,
     isComplete
