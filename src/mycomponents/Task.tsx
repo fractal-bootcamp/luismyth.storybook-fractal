@@ -1,7 +1,4 @@
-// import React from 'react';
-// // import './task.css' ??? may be needed later
-// import '..tailwind.css'
-// actually maybe none of these are needed
+import './task.css';
 
 const defaultTaskProps = {
     title: 'sweep the kitchen',
@@ -23,7 +20,10 @@ const Task = ({
     {
         return(
             <div className="task">
-                <p>hello world this a task</p>
+                <p>{title}</p>
+                <p>{description}</p>
+                <br />
+                <p>{isComplete ? "Complete" : "Incomplete"}</p>
             </div>
         )
     }

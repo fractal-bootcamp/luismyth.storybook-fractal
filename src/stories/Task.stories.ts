@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Task, { TaskProps } from '../mycomponents/Task';
+import "../index.css";
 
 const meta = {
     title: "LuiComponents/Task",
