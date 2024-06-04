@@ -1,7 +1,5 @@
-// import React from 'react';
-// // import './task.css' ??? may be needed later
-// import '..tailwind.css'
-// actually maybe none of these are needed
+import { useState } from "react"
+import './task.css';
 
 const defaultTaskProps = {
     title: 'sweep the kitchen',
@@ -15,15 +13,38 @@ export type TaskProps = {
     isComplete: boolean;
 }
 
+
+
+
+
 const Task = ({
     title,
     description,
     isComplete
 }: TaskProps = defaultTaskProps) =>
-    {
+    {        
+        const [checked, setChecked] = useState(isComplete)
+
+        const completionStatus = checked ? 'complete' : 'incomplete';
+
         return(
-            <div className="task">
-                <p>hello world this a task</p>
+            <div className={["flex", "flex-row", "task-card", `task-card--${completionStatus}`].join(' ')} >
+                <div className='flex-col'>
+                    <button 
+                        className={['task-checkbox', `task-checkbox--${completionStatus}` ].join(' ')}
+                        onClick={()=>{
+                            setChecked(!checked);
+                        }}
+                    />
+                </div>
+                <div className= {["flex-col",'flex-grow', `task-card--${completionStatus}`].join(' ')} >
+                    <div className= {['flex', 'flex-row', 'task-card--title',].join(' ')}>
+                        {title}
+                    </div>
+                    <div className= "flex-row task-card--description">
+                        {description}
+                    </div>
+                </div>
             </div>
         )
     }
