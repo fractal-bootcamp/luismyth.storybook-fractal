@@ -32,7 +32,7 @@ type TaskListProps = {
 
 export const TaskList = (props: TaskListProps = {tasks: defaultTaskListProps}) =>
     {        
-        const arrayOfTaskObjects = props["tasks"]
+        const arrayOfTaskObjects = props.tasks
         
         const sequencing = "TBD"
         return(
