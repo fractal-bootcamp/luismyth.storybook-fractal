@@ -22,18 +22,18 @@ const Task = ({
     isComplete
 }: TaskProps = defaultTaskProps) =>
     {        
-        const completionStyles = isComplete ? 'task-card--complete' : 'task-card--incomplete';
+        const completionStatus = isComplete ? 'complete' : 'incomplete';
 
         return(
             <div className="flex flex-row task-card" >
-                <div className="flex flex-col">
+                <div className={['flex-col task-checkbox', `task-checkbox--${completionStatus}` ].join(' ')}>
                     {isComplete ? "Complete" : "Incomplete"}
                 </div>
-                <div className= "flex flex-col" >
-                    <div className= {['flex flex-row', 'task-card--title', completionStyles].join(' ')}>
+                <div className= {["flex-col", `task-card--${completionStatus}`].join(' ')} >
+                    <div className= {['flex flex-row', 'task-card--title',].join(' ')}>
                         {title}
                     </div>
-                    <div className= "flex flex-row task-card--description">
+                    <div className= "flex-row task-card--description">
                         {description}
                     </div>
                 </div>
