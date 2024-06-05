@@ -9,7 +9,7 @@ type User = {
 }
 
 type MessageProps = {
-    timeStampe: number;
+    timeStamp: number;
     messageText: string;
     user: User;
 }
