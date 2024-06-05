@@ -23,18 +23,13 @@ export const Task = ({
     isComplete
 }: TaskProps = defaultTaskProps) =>
     {        
-        const [checked, setChecked] = useState(isComplete)
-
-        const completionStatus = checked ? 'complete' : 'incomplete';
+        const completionStatus = isComplete ? 'complete' : 'incomplete';
 
         return(
             <div className={["flex", "flex-row", "task-card", `task-card--${completionStatus}`].join(' ')} >
                 <div className='flex-col'>
-                    <button 
+                    <div 
                         className={['task-checkbox', `task-checkbox--${completionStatus}` ].join(' ')}
-                        onClick={()=>{
-                            setChecked(!checked);
-                        }}
                     />
                 </div>
                 <div className= {["flex-col",'flex-grow', `task-card--${completionStatus}`].join(' ')} >

@@ -59,7 +59,7 @@ export const TaskList = (props: TaskListProps = {tasks: defaultTaskListProps}) =
         const sequencing = "TBD"
         return(
             <>
-                {arrayOfTaskObjects.map(singleTaskObject => {
+                {taskListState.map(singleTaskObject => {
                     return(
                         <div className="flex m-4" key = {singleTaskObject.title}>
                             <Task {...singleTaskObject} />
