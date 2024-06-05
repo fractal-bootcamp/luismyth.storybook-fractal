@@ -58,33 +58,54 @@ export const defaultMessageThreadProps = [
 ]
 
 const Message = (props: MessageProps) => {
+    const messageSide = props.user.isCurrentUser ? "-reverse" : "";
+
     return(
-        <>
-        <p>{props.timeStamp} </p>
-        <p>{props.messageText} </p>
-        <p>{props.user.name} </p>
-        <p>{props.user.isCurrentUser} </p>
-        <p>{props.user.avatarUrl} </p>
-        <br />
-        </>
+        <div className = {`w-[1000px] flex flex-row${messageSide}`}
+        //overall message row
+        >
+            <div
+            //avatar column
+            >
+                <div className = 'rounded-full w-36 h-36'>
+                <img 
+                    className = 'rounded-full w-36 h-36'
+                    src = {props.user.avatarUrl}
+                    alt = {props.user.name}/>
+                </div>
+
+            </div>
+            <div
+            //snippet column
+            >
+                <div className="w-[800px] flex" >{props.messageText} </div>
+                <div>Show this on the {messageSide}</div>
+
+            </div>
+            <br />
+        </div>
     )
 }
 
 export const MessageThread = (props: MessageThreadProps = {messages: defaultMessageThreadProps}) => {
-    console.log("component loaded")
+    console.log("MessageThread component loaded")
     const [messageThreadState, setMessageThreadState] = useState<MessageProps[]>(props.messages ? [...props.messages].sort() : [])
 
     return(
-        <>
+        <div>
             <div>Start of messages</div>
             <br />
-            {messageThreadState.map((singleMessageObject, index) => {
-                return(
-                    <Message {...singleMessageObject} />
-                )
-            })}
+
+            <div className = "flex flex-col">
+                {messageThreadState.map((singleMessageObject, index) => {
+                    return(
+                        <Message {...singleMessageObject} />
+                    )
+                })}
+            </div>
+
             <br />
             <div>End of messages</div>
-        </>
+        </div>
     )
 }
