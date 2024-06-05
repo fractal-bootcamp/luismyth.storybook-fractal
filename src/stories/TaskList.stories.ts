@@ -7,7 +7,7 @@ const meta = {
     component: TaskList,
     parameters: {
         layout: "centered",
-    }
+    },
 } satisfies Meta<typeof TaskList>;
 
 export default meta

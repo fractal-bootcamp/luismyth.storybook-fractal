@@ -67,13 +67,10 @@ const Message = (props: MessageProps) => {
             <div
             //avatar column
             >
-                <div className = 'w-36 h-36'>
                 <img 
-                    className = 'rounded-full w-36 h-36'
+                    className = 'rounded-full object-cover w-[60px] h-[60px]'
                     src = {props.user.avatarUrl}
                     alt = {props.user.name}/>
-                </div>
-
             </div>
             <div
             //snippet column
