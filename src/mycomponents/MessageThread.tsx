@@ -1,8 +1,5 @@
-import { timeStamp } from "console"
 import { useState } from "react"
 import { User } from "./User";
-import { NONAME } from "dns";
-
 
 type MessageProps = {
     timeStamp: number;
@@ -66,22 +63,11 @@ const AvatarImage = (props: User) => {
 
 const Message = (props: MessageProps) => {
     const messageSide = props.user.isCurrentUser ? "-reverse" : "";
-
-    const userSpecificRowTags = null;
-
-    const userSpecificMessageTextTags = props.user.isCurrentUser ? "bg-[#74C2FF]" : "bg-[#D8D8D8]";
+    const messageBgColor = props.user.isCurrentUser ? "bg-[#74C2FF]" : "bg-[#D8D8D8]";
 
     const userAvatarSide = props.user.isCurrentUser ? "r" : "l"
-
     const openingMessageStyles = props.isOpening ? "" : `rounded-t${userAvatarSide}-none`;
     const closingMessageStyles = props.isClosing ? "" : `mb-0 rounded-b${userAvatarSide}-none`;
-
-    const schroedingerAvatarCode = props.isOpening ? `
-    <img 
-    className = 'rounded-full object-cover w-[48px] h-[48px]'
-    src = {props.user.avatarUrl}
-    alt = {props.user.name}/>` : ""
-
 
     return(
         <div className = {`w-[1000px] flex flex-row${messageSide} font-sans`}
@@ -95,26 +81,21 @@ const Message = (props: MessageProps) => {
             <div
             //snippet column
             >
-                <div className={`w-[800px] flex m-2 p-4 rounded-2xl ${userSpecificMessageTextTags} ${closingMessageStyles} ${openingMessageStyles}`} >{props.messageText} </div>
-
+                <div className={`w-[800px] flex m-2 p-4 rounded-2xl ${messageBgColor} ${closingMessageStyles} ${openingMessageStyles}`} >{props.messageText} </div>
             </div>
-            <br />
         </div>
     )
 }
 
-
 export const MessageThread = (props: MessageThreadProps = {messages: defaultMessageThreadProps}) => {
-    console.log("MessageThread component loaded")
     const [messageThreadState, setMessageThreadState] = useState<MessageProps[]>(props.messages ? [...props.messages].sort() : [])
+    // useState is not strictly needed in this dummy implementation
 
     return(
         <div>
-            <div>Start of messages</div>
-            <br />
-
             <div className = "flex flex-col">
                 {messageThreadState.map((singleMessageObject, index) => {
+
                     let isOpening = true;
                     if (index == 0) {
                         isOpening = true
@@ -136,9 +117,6 @@ export const MessageThread = (props: MessageThreadProps = {messages: defaultMess
                     )
                 })}
             </div>
-
-            <br />
-            <div>End of messages</div>
         </div>
     )
 }
