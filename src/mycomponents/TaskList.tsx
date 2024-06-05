@@ -1,4 +1,6 @@
 import { Task, TaskProps, defaultTaskProps } from "./Task"
+import { useState } from "react"
+
 import './task.css';
 
 export const defaultTaskListProps = [
@@ -24,19 +26,36 @@ defaultTaskProps,
 //     tasks: typeof defaultTaskListProps[]
 // }
 
+// type TaskListProps = {
+//     tasks: {
+//         title: string;
+//         description: string;
+//         isComplete: boolean;
+//     }[]
+// }
+
 type TaskListProps = {
-    tasks: {
-        title: string;
-        description: string;
-        isComplete: boolean;
-    }[]
+    tasks: Array<TaskProps>
 }
 
+function compareTasksForSequencing(a: TaskProps, b: TaskProps) {
+    if (a.isComplete && !b.isComplete) {
+        return -1;
+    }
+    else if (!a.isComplete && b.isComplete) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
 
 export const TaskList = (props: TaskListProps = {tasks: defaultTaskListProps}) =>
     {        
-        const arrayOfTaskObjects = props.tasks
+        const [taskListState, setTaskListState] = useState<TaskProps[]>(props.tasks ? [...props.tasks].sort(compareTasksForSequencing) : []);
+        const arrayOfTaskObjects = taskListState
         
+
         const sequencing = "TBD"
         return(
             <>
