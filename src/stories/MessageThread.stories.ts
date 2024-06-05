@@ -19,6 +19,11 @@ const sandwichedMessageThreadProps = [...defaultMessageThreadProps]
 
 sandwichedMessageThreadProps.push(...defaultMessageThreadProps)
 
+sandwichedMessageThreadProps.push(defaultMessageThreadProps[2])
+sandwichedMessageThreadProps.push(defaultMessageThreadProps[2])
+sandwichedMessageThreadProps.push(defaultMessageThreadProps[2])
+
+
 export const ThreadWithSandiwichedMessage: Story = {
     args: {messages: sandwichedMessageThreadProps}
 }
