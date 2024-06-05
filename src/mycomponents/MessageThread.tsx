@@ -8,6 +8,8 @@ type MessageProps = {
     timeStamp: number;
     messageText: string;
     user: User;
+    isOpening?: boolean;
+    isClosing?: boolean;
 }
 
 type MessageThreadProps = {
@@ -60,6 +62,9 @@ const Message = (props: MessageProps) => {
 
     const userSpecificMessageTextTags = props.user.isCurrentUser ? "bg-[#74C2FF]" : "bg-[#D8D8D8]";
 
+    const openingMessageStyles = props.isOpening ? "yes" : "no";
+    const closingMessageStyles = props.isClosing ? "yes" : "mb-0";
+
 
     return(
         <div className = {`w-[1000px] flex flex-row${messageSide} font-sans`}
@@ -76,7 +81,9 @@ const Message = (props: MessageProps) => {
             <div
             //snippet column
             >
-                <div className={`w-[800px] flex m-2 mb-0 p-4 rounded-2xl ${userSpecificMessageTextTags}`} >{props.messageText} </div>
+                <div className={`w-[800px] flex m-2 p-4 rounded-2xl ${userSpecificMessageTextTags} ${closingMessageStyles}`} >{props.messageText} </div>
+                <p>was the above message an opening message? {openingMessageStyles}</p>
+                <p>was the above message a closing message? {closingMessageStyles}</p>
             </div>
             <br />
         </div>
@@ -96,8 +103,24 @@ export const MessageThread = (props: MessageThreadProps = {messages: defaultMess
 
             <div className = "flex flex-col">
                 {messageThreadState.map((singleMessageObject, index) => {
+                    let isOpening = true;
+                    if (index == 0) {
+                        isOpening = true
+                    }
+                    else if (singleMessageObject.user.isCurrentUser == messageThreadState[index-1].user.isCurrentUser){
+                        isOpening = false
+                    }
+
+                    let isClosing = true;
+                    if (index == (messageThreadState.length-1)){
+                        isClosing = true
+                    }
+                    else if (singleMessageObject.user.isCurrentUser == messageThreadState[index+1].user.isCurrentUser){
+                        isClosing = false
+                    }
+                    
                     return(
-                        <Message {...singleMessageObject} />
+                        <Message {...singleMessageObject} isOpening={isOpening} isClosing={isClosing} />
                     )
                 })}
             </div>
