@@ -1,6 +1,7 @@
 import { timeStamp } from "console"
 import { useState } from "react"
 import { User } from "./User";
+import { NONAME } from "dns";
 
 
 type MessageProps = {
@@ -13,7 +14,7 @@ type MessageThreadProps = {
     messages: Array<MessageProps>    
 }
 
-const avatarUrlA = "https://upload.wikimedia.org/wikipedia/commons/7/7e/Claudia_Sheinbaum_2022_%28cropped%29.jpg"
+const avatarUrlA = "https://upload.wikimedia.org/wikipedia/commons/6/6f/Fumio_Kishida_20211005.jpg"
 const avatarUrlB = "https://upload.wikimedia.org/wikipedia/commons/7/7e/Claudia_Sheinbaum_2022_%28cropped%29.jpg"
 
 const userMe = {
@@ -55,29 +56,34 @@ export const defaultMessageThreadProps = [
 const Message = (props: MessageProps) => {
     const messageSide = props.user.isCurrentUser ? "-reverse" : "";
 
+    const userSpecificRowTags = null;
+
+    const userSpecificMessageTextTags = props.user.isCurrentUser ? "bg-[#74C2FF]" : "bg-[#D8D8D8]";
+
+
     return(
-        <div className = {`w-[1000px] flex flex-row${messageSide}`}
+        <div className = {`w-[1000px] flex flex-row${messageSide} font-sans`}
         //overall message row
         >
-            <div
+            <div className="m-2"
             //avatar column
             >
                 <img 
-                    className = 'rounded-full object-cover w-[60px] h-[60px]'
+                    className = 'rounded-full object-cover w-[48px] h-[48px]'
                     src = {props.user.avatarUrl}
                     alt = {props.user.name}/>
             </div>
             <div
             //snippet column
             >
-                <div className="w-[800px] flex" >{props.messageText} </div>
-                <div>Show this on the {messageSide}</div>
-
+                <div className={`w-[800px] flex m-2 mb-0 p-4 rounded-2xl ${userSpecificMessageTextTags}`} >{props.messageText} </div>
             </div>
             <br />
         </div>
     )
 }
+
+///mb-0 should only be on opener and sandwich message. closer and island emails unaffected.
 
 export const MessageThread = (props: MessageThreadProps = {messages: defaultMessageThreadProps}) => {
     console.log("MessageThread component loaded")
