@@ -1,12 +1,7 @@
 import { timeStamp } from "console"
 import { useState } from "react"
+import { User } from "./User";
 
-
-type User = {
-    name: string;
-    avatarUrl: string;
-    isCurrentUser: boolean;
-}
 
 type MessageProps = {
     timeStamp: number;
