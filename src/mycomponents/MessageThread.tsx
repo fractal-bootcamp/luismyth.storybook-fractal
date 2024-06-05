@@ -59,9 +59,12 @@ export const defaultMessageThreadProps = [
 
 export const MessageThread = (props: MessageThreadProps = {messages: defaultMessageThreadProps}) => {
     console.log("component loaded")
+    const [messageThreadState, setMessageThreadState] = useState<MessageProps[]>(props.messages ? [...props.messages].sort() : [])
+
     return(
         <>
             <div>Helllo</div>
+            <p>{messageThreadState[0].messageText}</p>
         </>
     )
 }
