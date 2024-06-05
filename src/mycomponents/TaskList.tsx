@@ -68,8 +68,10 @@ export const TaskList = (props: TaskListProps = {tasks: defaultTaskListProps}) =
                                     // we want a "deep copy", so we'll pull the ingredients out of taskListState
                                     // and then reassemble them in a fresh reference
                                     workingCloneOfState[index].isComplete = !workingCloneOfState[index].isComplete;
-                                    console.log("test");
+                                    workingCloneOfState.sort(compareTasksForSequencing);
                                     setTaskListState(workingCloneOfState);
+                                    console.log("successfully sorted");
+
                                 }}
                             />
                             {/* Dot dot dot unpacks all the params and passes them through, e.g. the same as saying... 
