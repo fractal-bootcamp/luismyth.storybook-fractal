@@ -52,9 +52,7 @@ function compareTasksForSequencing(a: TaskProps, b: TaskProps) {
 
 export const TaskList = (props: TaskListProps = {tasks: defaultTaskListProps}) =>
     {        
-        const [taskListState, setTaskListState] = useState<TaskProps[]>(props.tasks ? [...props.tasks].sort(compareTasksForSequencing) : []);
-        const arrayOfTaskObjects = taskListState
-        
+        const [taskListState, setTaskListState] = useState<TaskProps[]>(props.tasks ? [...props.tasks].sort(compareTasksForSequencing) : []);        
 
         const sequencing = "TBD"
         return(
@@ -65,8 +63,14 @@ export const TaskList = (props: TaskListProps = {tasks: defaultTaskListProps}) =
                             <Task 
                                 {...singleTaskObject} 
                                 onClick = {() => {
-                                    console.log("test")}
-                                }
+                                    const workingCloneOfState = [...taskListState]; 
+                                    // if you just said oldState = taskListState it would be two variables pointing to the same reference
+                                    // we want a "deep copy", so we'll pull the ingredients out of taskListState
+                                    // and then reassemble them in a fresh reference
+                                    workingCloneOfState[index].isComplete = !workingCloneOfState[index].isComplete;
+                                    console.log("test");
+                                    setTaskListState(workingCloneOfState);
+                                }}
                             />
                             {/* Dot dot dot unpacks all the params and passes them through, e.g. the same as saying... 
                             <Task title={singleTaskObject.title} description={singleTaskObject.description} isComplete={singleTaskObject.isComplete} /> */}
