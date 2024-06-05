@@ -55,6 +55,15 @@ export const defaultMessageThreadProps = [
     },
 ]
 
+const AvatarImage = (props: User) => {
+    return(
+        <img 
+        className = 'rounded-full object-cover w-[48px] h-[48px]'
+        src = {props.avatarUrl}
+        alt = {props.name}/>
+    )
+}
+
 const Message = (props: MessageProps) => {
     const messageSide = props.user.isCurrentUser ? "-reverse" : "";
 
@@ -67,33 +76,33 @@ const Message = (props: MessageProps) => {
     const openingMessageStyles = props.isOpening ? "" : `rounded-t${userAvatarSide}-none`;
     const closingMessageStyles = props.isClosing ? "" : `mb-0 rounded-b${userAvatarSide}-none`;
 
+    const schroedingerAvatarCode = props.isOpening ? `
+    <img 
+    className = 'rounded-full object-cover w-[48px] h-[48px]'
+    src = {props.user.avatarUrl}
+    alt = {props.user.name}/>` : ""
 
 
     return(
         <div className = {`w-[1000px] flex flex-row${messageSide} font-sans`}
         //overall message row
         >
-            <div className="m-2"
+            <div className="m-2 w-[48px] h-[48px]"
             //avatar column
             >
-                <img 
-                    className = 'rounded-full object-cover w-[48px] h-[48px]'
-                    src = {props.user.avatarUrl}
-                    alt = {props.user.name}/>
+                {props.isOpening && <AvatarImage {...props.user} />}
             </div>
             <div
             //snippet column
             >
                 <div className={`w-[800px] flex m-2 p-4 rounded-2xl ${userSpecificMessageTextTags} ${closingMessageStyles} ${openingMessageStyles}`} >{props.messageText} </div>
-                {/* <p>was the above message an opening message? {openingMessageStyles}</p>
-                <p>was the above message a closing message? {closingMessageStyles}</p> */}
+
             </div>
             <br />
         </div>
     )
 }
 
-///mb-0 should only be on opener and sandwich message. closer and island emails unaffected.
 
 export const MessageThread = (props: MessageThreadProps = {messages: defaultMessageThreadProps}) => {
     console.log("MessageThread component loaded")
