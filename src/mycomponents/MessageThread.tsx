@@ -59,7 +59,14 @@ export const defaultMessageThreadProps = [
 
 const Message = (props: MessageProps) => {
     return(
+        <>
+        <p>{props.timeStamp} </p>
         <p>{props.messageText} </p>
+        <p>{props.user.name} </p>
+        <p>{props.user.isCurrentUser} </p>
+        <p>{props.user.avatarUrl} </p>
+        <br />
+        </>
     )
 }
 
