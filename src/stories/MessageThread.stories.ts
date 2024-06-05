@@ -14,3 +14,11 @@ type Story = StoryObj<typeof meta>
 export const ExampleThread: Story = {
     args: {messages: defaultMessageThreadProps}
 }
+
+const sandwichedMessageThreadProps = [...defaultMessageThreadProps]
+
+sandwichedMessageThreadProps.push(...defaultMessageThreadProps)
+
+export const ThreadWithSandiwichedMessage: Story = {
+    args: {messages: sandwichedMessageThreadProps}
+}
