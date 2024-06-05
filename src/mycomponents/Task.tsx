@@ -11,38 +11,31 @@ export type TaskProps = {
     title: string;
     description: string;
     isComplete: boolean;
+    onClick?: () => void;
 }
 
 
 
 
 
-export const Task = ({
-    title,
-    description,
-    isComplete
-}: TaskProps = defaultTaskProps) =>
+export const Task = (props: TaskProps = defaultTaskProps) =>
     {        
-        const [checked, setChecked] = useState(isComplete)
-
-        const completionStatus = checked ? 'complete' : 'incomplete';
+        const completionStatus = props.isComplete ? 'complete' : 'incomplete';
 
         return(
-            <div className={["flex", "flex-row", "task-card", `task-card--${completionStatus}`].join(' ')} >
+            <div className={["flex", "flex-row", "task-card", `task-card--${completionStatus}`].join(' ')} onClick = {props.onClick} >
                 <div className='flex-col'>
-                    <button 
+                    <div 
                         className={['task-checkbox', `task-checkbox--${completionStatus}` ].join(' ')}
-                        onClick={()=>{
-                            setChecked(!checked);
-                        }}
+                        // could just be... className={`task-checkbox task-checkbox--${completionStatus}`}
                     />
                 </div>
                 <div className= {["flex-col",'flex-grow', `task-card--${completionStatus}`].join(' ')} >
                     <div className= {['flex', 'flex-row', 'task-card--title',].join(' ')}>
-                        {title}
+                        {props.title}
                     </div>
                     <div className= "flex-row task-card--description">
-                        {description}
+                        {props.description}
                     </div>
                 </div>
             </div>
