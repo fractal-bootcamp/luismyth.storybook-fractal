@@ -62,8 +62,11 @@ const Message = (props: MessageProps) => {
 
     const userSpecificMessageTextTags = props.user.isCurrentUser ? "bg-[#74C2FF]" : "bg-[#D8D8D8]";
 
-    const openingMessageStyles = props.isOpening ? "yes" : "no";
-    const closingMessageStyles = props.isClosing ? "yes" : "mb-0";
+    const userAvatarSide = props.user.isCurrentUser ? "r" : "l"
+
+    const openingMessageStyles = props.isOpening ? "" : `rounded-t${userAvatarSide}-none`;
+    const closingMessageStyles = props.isClosing ? "" : `mb-0 rounded-b${userAvatarSide}-none`;
+
 
 
     return(
@@ -81,9 +84,9 @@ const Message = (props: MessageProps) => {
             <div
             //snippet column
             >
-                <div className={`w-[800px] flex m-2 p-4 rounded-2xl ${userSpecificMessageTextTags} ${closingMessageStyles}`} >{props.messageText} </div>
-                <p>was the above message an opening message? {openingMessageStyles}</p>
-                <p>was the above message a closing message? {closingMessageStyles}</p>
+                <div className={`w-[800px] flex m-2 p-4 rounded-2xl ${userSpecificMessageTextTags} ${closingMessageStyles} ${openingMessageStyles}`} >{props.messageText} </div>
+                {/* <p>was the above message an opening message? {openingMessageStyles}</p>
+                <p>was the above message a closing message? {closingMessageStyles}</p> */}
             </div>
             <br />
         </div>
